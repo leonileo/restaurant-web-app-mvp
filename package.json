@@ -42,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/leonileo/restaurant-web-app-mvp/issues"
   },
-  "homepage": "https://github.com/leonileo/restaurant-web-app-mvp#readme"
+  "homepage": "https://github.com/leonileo/restaurant-web-app-mvp#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
