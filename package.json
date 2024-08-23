@@ -1,0 +1,46 @@
+{
+  "name": "restaurant-web-app-mvp",
+  "version": "1.0.0",
+  "description": "This repository houses the initial prototype of a restaurant management system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonileo/restaurant-web-app-mvp.git"
+  },
+  "keywords": [
+    "restaurant",
+    "food",
+    "foodie",
+    "instafood",
+    "yummy",
+    "delicious",
+    "foodstagram",
+    "foodphotography",
+    "eat",
+    "tasty",
+    "dinner",
+    "lunch",
+    "breakfast",
+    "brunch",
+    "cafe",
+    "coffee",
+    "drinks",
+    "cocktails",
+    "wine",
+    "beer",
+    "dessert",
+    "chef",
+    "cooking",
+    "foodlover",
+    "foodblogge"
+  ],
+  "author": "kaleb wendwessen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonileo/restaurant-web-app-mvp/issues"
+  },
+  "homepage": "https://github.com/leonileo/restaurant-web-app-mvp#readme"
+}
