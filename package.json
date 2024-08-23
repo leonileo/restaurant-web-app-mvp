@@ -51,6 +51,7 @@
   },
   "homepage": "https://github.com/leonileo/restaurant-web-app-mvp#readme",
   "dependencies": {
+    "concurrently": "^8.2.2",
     "express": "^4.19.2"
   }
 }
