@@ -13,7 +13,7 @@ This is the mvp (minimum valuable product) of the restaurant web app.
 
 ## Authors
 ###### MVP
-- Kaleb wendwessen - [Github](https://github.com/leonileo)/[Linkedin](https://linkedin.com/in/kaleb-wendwessen) 
+- Kaleb wendwessen - [Github](https://github.com/leonileo) / [Linkedin](https://linkedin.com/in/kaleb-wendwessen) 
 
 ## License
 #### [MIT License](./LICENSE.txt)
