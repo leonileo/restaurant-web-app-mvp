@@ -5,8 +5,8 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 
 const ContactUsComponent = () => {
 // info
-  const phone_number = "09"
-  const email_address = ""
+  const phone_number = "+251920916622"
+  const email_address = "morninginaddis@gmail.com"
   const address = "Ararat to kara"
 
   const cards = [
