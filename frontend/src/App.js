@@ -1,11 +1,22 @@
 // App.js
+import { ToastContainer } from 'react-toastify'
+import { Outlet } from 'react-router-dom';
+import HeaderComponent from './components/HeaderComponent'
+import FooterComponent from './components/FooterComponent'
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      Code base
-    </div>
+    <>
+      <HeaderComponent />
+          <main className='flex justify-center sm:min-h-[70vh]'>
+              <div className='w-full'>
+                  <Outlet />
+              </div>
+          </main>
+        <FooterComponent/>
+      <ToastContainer />
+    </>
   );
 }
 
