@@ -11,6 +11,7 @@ import './index.css';
 
 // screens
 import HomeScreen from './screens/HomeScreen'
+import MenuScreen from './screens/MenuScreen';
 
 
 // Router function
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />} >
       <Route index={true} path='/' element={<HomeScreen />} />
+      <Route index={true} path='/menu' element={<MenuScreen />} />
     </Route>
   )
 )
