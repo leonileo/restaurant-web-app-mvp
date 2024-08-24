@@ -15,7 +15,7 @@ const ContactUsComponent = () => {
     {icon: <HiOutlineLocationMarker />, title: "Location", value: address},
   ]
   return (
-    <div className='mt-5 relative -z-10 overflow-hidden' id='contact'>
+    <div className='mt-5 relative overflow-hidden' id='contact'>
       <div className="tittle text-primaryColor text-center"><h2 className='text-4xl font-bold mb-10'>Contact us through</h2></div>
         <div className="cards flex flex-wrap gap-3 justify-center px-5">
           {cards.map((card) => (
