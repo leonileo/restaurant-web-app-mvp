@@ -19,10 +19,10 @@ const HeaderComponent = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/#about" className='sm:text-white nav-link'>About</Navbar.Link>
-        <Navbar.Link href="/#specials" className='sm:text-white nav-link'>Specials</Navbar.Link>
-        <Navbar.Link href="/#events" className='sm:text-white nav-link'>Events</Navbar.Link>
-        <Navbar.Link href="/#contact" className='sm:text-white nav-link'>Contact</Navbar.Link>
+        <Navbar.Link href="/#about" className='text-white nav-link'>About</Navbar.Link>
+        <Navbar.Link href="/#specials" className='text-white nav-link'>Specials</Navbar.Link>
+        <Navbar.Link href="/#events" className='text-white nav-link'>Events</Navbar.Link>
+        <Navbar.Link href="/#contact" className='text-white nav-link'>Contact</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
     <hr className='border-white' />
