@@ -10,3 +10,11 @@
 .nav-link:hover{
     color: rgba(255, 165, 0, 0.72) !important;
 }
+
+.stroke{
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 165, 0, 0.72);
+}
+.modal2::-webkit-scrollbar{
+    display: none;
+}
