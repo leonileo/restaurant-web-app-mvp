@@ -7,16 +7,20 @@ import AboutUsComponent from '../components/AboutUsComponent.jsx'
 import SpecialsComponent from '../components/SpecialsComponent.jsx'
 import EventsComponent from '../components/EventsComponent.jsx'
 import ContactUsComponent from '../components/ContactUsComponent.jsx'
+import HeaderComponent from '../components/HeaderComponent.jsx'
+import FooterComponent from '../components/FooterComponent.jsx'
 
 
 const HomeScreen = () => {
   return (
     <>
-     <Hero />
-     <AboutUsComponent />
-     <SpecialsComponent />
-     <EventsComponent />
-     <ContactUsComponent />
+      <HeaderComponent />
+        <Hero />
+        <AboutUsComponent />
+        <SpecialsComponent />
+        <EventsComponent />
+        <ContactUsComponent />
+      <FooterComponent />
     </>
   )
 }

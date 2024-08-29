@@ -2,12 +2,14 @@ import React from 'react'
 import loginImg from '../assets/images/loginImg.png'
 import { MdOutlineMail } from "react-icons/md";
 import { PiPasswordBold } from "react-icons/pi";
+import HeaderComponent from '../components/HeaderComponent';
+import FooterComponent from '../components/FooterComponent';
 
 
 const LoginScreen = () => {
   return (
     <>
-        <div className="sm:h-[4.5vh] h-[8vh] bg-secondaryColor"></div>
+        <HeaderComponent />
         <div className='flex justify-center items-center w-full min-h-[80vh] h-auto p-5'
         style={{
                 backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.8), rgba(51, 33, 0, 0.5)), url(${loginImg})`,
@@ -41,6 +43,7 @@ const LoginScreen = () => {
                 </div>
             </div>
         </div>
+        <FooterComponent />
     </>
   )
 }

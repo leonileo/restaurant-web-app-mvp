@@ -8,6 +8,8 @@ import oil from '../assets/images/oil.png'
 import tomato from '../assets/images/tomato.png'
 import bread from '../assets/images/bread.png'
 import { TfiClose } from 'react-icons/tfi'
+import HeaderComponent from '../components/HeaderComponent'
+import FooterComponent from '../components/FooterComponent'
 
 
 
@@ -142,152 +144,154 @@ const MenuScreen = () => {
 
   return (
     <>
-    <div className="sm:h-[4.5vh] h-[8vh] bg-secondaryColor"></div>
-    <div className="menu min-h-[80vh]">
-        <div className="banner flex justify-center items-center text-white h-[30vh]" style={
-        {
-            backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.8)), url(${menuImg})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-        }}>
-            <h1 className='sm:text-[100px] text-3xl font-Jomolhari text-center'>Our Menu</h1>
-        </div>
-        <div className="bottom w-full lg:flex-row flex-col-reverse flex py-10">
-            {/* menu */}
-            <div className="menu w-full flex">
-                <div className='xl:pl-52 p-2 w-full'>
-                    {/* caregories */}
-                    <div className="categories sm:flex block items-end gap-2 mb-5 overflow-hidden">
-                        <h4 className='text-3xl '>Menu</h4>
-                        {/* map categories */}
-                         <div className='categories sm:overflow-hidden overflow-x-scroll flex gap-2 max-w-[4 00px] w-auto'>
-                            {categories.map((category) => (
-                                <p className={`${category === currentCategory && "border-b-gray-500"} border-b-2 border-transparent text-nowrap duration-100 transition-all`} onClick={()=> setCurrentCategory(category)}>{category}</p>
+        <HeaderComponent />
+            <div className="sm:h-[4.5vh] h-[8vh] bg-secondaryColor"></div>
+            <div className="menu min-h-[80vh]">
+                <div className="banner flex justify-center items-center text-white h-[30vh]" style={
+                {
+                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.8)), url(${menuImg})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}>
+                    <h1 className='sm:text-[100px] text-3xl font-Jomolhari text-center'>Our Menu</h1>
+                </div>
+                <div className="bottom w-full lg:flex-row flex-col-reverse flex py-10">
+                    {/* menu */}
+                    <div className="menu w-full flex">
+                        <div className='xl:pl-52 p-2 w-full'>
+                            {/* caregories */}
+                            <div className="categories sm:flex block items-end gap-2 mb-5 overflow-hidden">
+                                <h4 className='text-3xl '>Menu</h4>
+                                {/* map categories */}
+                                <div className='categories sm:overflow-hidden overflow-x-scroll flex gap-2 max-w-[4 00px] w-auto'>
+                                    {categories.map((category) => (
+                                        <p className={`${category === currentCategory && "border-b-gray-500"} border-b-2 border-transparent text-nowrap duration-100 transition-all`} onClick={()=> setCurrentCategory(category)}>{category}</p>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="meals grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-5">
+                                {meals.map((meal) => (
+                                    meal.meal_category === currentCategory && (
+                                    <div className='relative shadow-md hover:shadow-lg transition-all rounded-lg overflow-hidden h-[30vh]'>
+                                        <div className="picture h-[15vh]"
+                                            style={{
+                                                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.5)), url(${meal.meal_picture})`,
+                                                    backgroundRepeat: "no-repeat",
+                                                    backgroundSize: "cover",
+                                                    backgroundPosition: "center",
+                                                }}
+                                        >
+                                        </div>
+                                        <div className='px-5 p-2'>
+                                            <h3 className='font-semibold text-primaryColor sm:text-2xl pb-2'>{meal.meal_name}</h3>
+                                            <p className='font-semibold'>Ingredients</p>
+                                            <p className='w-[250px] line-clamp-1'>{meal.meal_ingredient}</p>
+                                        </div>
+                                        <div className="btn flex justify-end">
+                                            <button onClick={() =>{ 
+                                                setMeal(meal.meal_name, meal.meal_picture, meal.meal_ingredient, meal.meal_category, meal.is_special, meal.meal_code, meal.meal_price)
+                                                setOpn(!opn)
+                                                }} 
+                                                className='transition-all m-5 p-2 rounded-full px-5 font-semibold text-primaryColor border-[1px] border-primaryColor hover:text-white cursor-pointer bg-transparent hover:bg-primaryColor '>Open detail</button>
+                                        </div>
+                                    </div>
+                                    )
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    {/* sepcials */}
+                    <div className="specials w-full lg:max-w-[500px] p-2">
+                        <h2 className='text-textColor font-semibold text-3xl pb-5'>Today specials</h2>
+                        <div className="sps flex flex-wrap sm:my-0 my-5 sm:p-0 p-2 sm:max-w-auto max-w-[1050px] ">
+                            {meals.map(special => (
+                                special.is_special === true && (
+                                    <div className='my-2 flex shadow-md hover:shadow-lg transition-all rounded-lg overflow-hidden w-full xl:w-[450px]'>
+                                        <div className="left w-full max-w-[250px] flex justify-center items-center"
+                                            style={{
+                                                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(255,165,0,0.72)), url(${special.meal_picture})`,
+                                                    backgroundRepeat: "no-repeat",
+                                                    backgroundSize: "cover",
+                                                    backgroundPosition: "center",
+                                                }}
+                                        ><p className='stroke text-5xl text-center'>Special</p></div>
+                                        <div className='right min-h-[10vh] px-5 p-2'>
+                                            <div>
+                                                <h3 className='font-semibold text-primaryColor sm:text-xl pb-2'>{special.meal_name}</h3>
+                                                <p className='font-semibold'>Ingredients</p>
+                                                <p className='w-full line-clamp-1'>{special.meal_ingredient}</p>
+                                            </div>
+                                            <div className='flex justify-end'>
+                                                <button 
+                                                onClick={() =>{ 
+                                                    setMeal(special.meal_name, special.meal_picture, special.meal_ingredient, special.meal_category, special.is_special, special.meal_code, special.meal_price, special.is_special)
+                                                    setOpn(!opn)
+                                                }}
+                                                className='transition-all text-end p-2 rounded-full px-5 font-semibold text-primaryColor border-[1px] border-transparent hover:text-white cursor-pointer bg-transparent hover:bg-primaryColor'
+                                                >Open detail</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
                             ))}
                         </div>
                     </div>
-                    <div className="meals grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-5">
-                        {meals.map((meal) => (
-                            meal.meal_category === currentCategory && (
-                            <div className='relative shadow-md hover:shadow-lg transition-all rounded-lg overflow-hidden h-[30vh]'>
-                                <div className="picture h-[15vh]"
-                                    style={{
-                                            backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.5)), url(${meal.meal_picture})`,
-                                            backgroundRepeat: "no-repeat",
-                                            backgroundSize: "cover",
-                                            backgroundPosition: "center",
-                                          }}
-                                >
-                                </div>
-                                <div className='px-5 p-2'>
-                                    <h3 className='font-semibold text-primaryColor sm:text-2xl pb-2'>{meal.meal_name}</h3>
-                                    <p className='font-semibold'>Ingredients</p>
-                                    <p className='w-[250px] line-clamp-1'>{meal.meal_ingredient}</p>
-                                </div>
-                                <div className="btn flex justify-end">
-                                    <button onClick={() =>{ 
-                                        setMeal(meal.meal_name, meal.meal_picture, meal.meal_ingredient, meal.meal_category, meal.is_special, meal.meal_code, meal.meal_price)
-                                        setOpn(!opn)
-                                        }} 
-                                        className='transition-all m-5 p-2 rounded-full px-5 font-semibold text-primaryColor border-[1px] border-primaryColor hover:text-white cursor-pointer bg-transparent hover:bg-primaryColor '>Open detail</button>
-                                </div>
-                            </div>
-                            )
-                        ))}
-                    </div>
                 </div>
-            </div>
-            {/* sepcials */}
-            <div className="specials w-full lg:max-w-[500px] p-2">
-                <h2 className='text-textColor font-semibold text-3xl pb-5'>Today specials</h2>
-                <div className="sps flex flex-wrap sm:my-0 my-5 sm:p-0 p-2 sm:max-w-auto max-w-[1050px] ">
-                    {meals.map(special => (
-                        special.is_special === true && (
-                            <div className='my-2 flex shadow-md hover:shadow-lg transition-all rounded-lg overflow-hidden w-full xl:w-[450px]'>
-                                <div className="left w-full max-w-[250px] flex justify-center items-center"
-                                    style={{
-                                            backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(255,165,0,0.72)), url(${special.meal_picture})`,
-                                            backgroundRepeat: "no-repeat",
-                                            backgroundSize: "cover",
-                                            backgroundPosition: "center",
-                                        }}
-                                ><p className='stroke text-5xl text-center'>Special</p></div>
-                                <div className='right min-h-[10vh] px-5 p-2'>
-                                    <div>
-                                        <h3 className='font-semibold text-primaryColor sm:text-xl pb-2'>{special.meal_name}</h3>
-                                        <p className='font-semibold'>Ingredients</p>
-                                        <p className='w-full line-clamp-1'>{special.meal_ingredient}</p>
-                                    </div>
-                                    <div className='flex justify-end'>
-                                        <button 
-                                        onClick={() =>{ 
-                                            setMeal(special.meal_name, special.meal_picture, special.meal_ingredient, special.meal_category, special.is_special, special.meal_code, special.meal_price, special.is_special)
-                                            setOpn(!opn)
-                                        }}
-                                        className='transition-all text-end p-2 rounded-full px-5 font-semibold text-primaryColor border-[1px] border-transparent hover:text-white cursor-pointer bg-transparent hover:bg-primaryColor'
-                                        >Open detail</button>
+                {/* meal modal */}
+                <div className={`modal2 sm:p-20 px-5 py-12 top-0 left-0 w-full h-full overflow-scroll bg-white fixed z-[99999] ${ opn ? "block" : "hidden"}`}>
+                    <div className="closebtn flex justify-end absolute sm:top-5 top-1 right-[15px]">
+                        <button className='p-2 border-2 rounded-full sm:border-transparent border-red-500 sm:hover:border-red-500 transition-all' onClick={()=>{setOpn(!opn)}}><TfiClose className='text-red-600 sm:text-[25px]'/></button>
+                    </div>
+                    <div className="breadcrumb">
+                        <p className='font-semibold text-xl'>Home | Menu | {mealName}</p>
+                    </div>
+                    {mealSpecial === true ? (
+                        <div>
+                            <p className='text-secondaryColor font-Jomolhari md:text-3xl text-xl mt-5 text-center w-full'>Presenting our special dish from {mealCategory} category, The <i className='underline text-white px-3 rounded-md bg-gradient-to-r from-secondaryColor to-primaryColor'>{mealName}</i>.</p>
+                        </div>
+                    )
+                    : ""}
+                    <div className='bottom xl:flex justify-center gap-2 lg:px-52 sm:py-20 p-5 auto'>
+                        <div className="left p-5 w-fit flex justify-center ">
+                            <img src={mealPicture} alt="" className='rounded-lg h-full' />
+                        </div>
+                        <div className="right w-full grid items-center">
+                            <div>
+                                <div className="top mb-5 flex justify-between">
+                                    <h2 className='text-3xl font-semibold'>{mealName}</h2>
+                                    <div className="end flex gap-3">
+                                        <div className="price text-primaryColor flex gap-1 items-end">
+                                            <p className='text-textColor text-xl'>Price </p>
+                                            <p className='text-xl'> {mealPrice}<span className='text-xs font-semibold'>Birr</span></p>
+                                        </div>
+                                        <div className="code">
+                                            <p className='bg-primaryColor text-white text-2xl px-2 rounded'>{mealCode}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    ))}
-                </div>
-            </div>
-        </div>
-        {/* meal modal */}
-        <div className={`modal2 sm:p-20 px-5 py-12 top-0 left-0 w-full h-full overflow-scroll bg-white fixed z-[99999] ${ opn ? "block" : "hidden"}`}>
-            <div className="closebtn flex justify-end absolute sm:top-5 top-1 right-[15px]">
-                <button className='p-2 border-2 rounded-full sm:border-transparent border-red-500 sm:hover:border-red-500 transition-all' onClick={()=>{setOpn(!opn)}}><TfiClose className='text-red-600 sm:text-[25px]'/></button>
-            </div>
-            <div className="breadcrumb">
-                <p className='font-semibold text-xl'>Home | Menu | {mealName}</p>
-            </div>
-            {mealSpecial === true ? (
-                <div>
-                    <p className='text-secondaryColor font-Jomolhari md:text-3xl text-xl mt-5 text-center w-full'>Presenting our special dish from {mealCategory} category, The <i className='underline text-white px-3 rounded-md bg-gradient-to-r from-secondaryColor to-primaryColor'>{mealName}</i>.</p>
-                </div>
-            )
-            : ""}
-            <div className='bottom xl:flex justify-center gap-2 lg:px-52 sm:py-20 p-5 auto'>
-                <div className="left p-5 w-fit flex justify-center ">
-                    <img src={mealPicture} alt="" className='rounded-lg h-full' />
-                </div>
-                <div className="right w-full grid items-center">
-                    <div>
-                        <div className="top mb-5 flex justify-between">
-                            <h2 className='text-3xl font-semibold'>{mealName}</h2>
-                            <div className="end flex gap-3">
-                                <div className="price text-primaryColor flex gap-1 items-end">
-                                    <p className='text-textColor text-xl'>Price </p>
-                                    <p className='text-xl'> {mealPrice}<span className='text-xs font-semibold'>Birr</span></p>
-                                </div>
-                                <div className="code">
-                                    <p className='bg-primaryColor text-white text-2xl px-2 rounded'>{mealCode}</p>
+                                <div className="bottom space-y-5 mt-8">
+                                    <h3 className='text-xl font-semibold'>Ingredients</h3>
+                                    <p className="ingredients text-xl pl-4">{mealIngredient}</p>
                                 </div>
                             </div>
-                        </div>
-                        <div className="bottom space-y-5 mt-8">
-                            <h3 className='text-xl font-semibold'>Ingredients</h3>
-                            <p className="ingredients text-xl pl-4">{mealIngredient}</p>
-                        </div>
-                    </div>
 
-                    <div className="endDiv">
-                        <h3 className='text-3xl font-semibold'>Ingredients</h3>
-                        <div className="icons flex gap-8 my-5 mb-16 md:overflow-hidden overflow-x-scroll">
-                            <img src={egg} alt="" className='h-[75px]' />
-                            <img src={onion} alt="" className='h-[75px]' />
-                            <img src={oil} alt="" className='h-[75px]' />
-                            <img src={tomato} alt="" className='h-[75px]' />
-                            <img src={bread} alt="" className='h-[75px]' />
+                            <div className="endDiv">
+                                <h3 className='text-3xl font-semibold'>Ingredients</h3>
+                                <div className="icons flex gap-8 my-5 mb-16 md:overflow-hidden overflow-x-scroll">
+                                    <img src={egg} alt="" className='h-[75px]' />
+                                    <img src={onion} alt="" className='h-[75px]' />
+                                    <img src={oil} alt="" className='h-[75px]' />
+                                    <img src={tomato} alt="" className='h-[75px]' />
+                                    <img src={bread} alt="" className='h-[75px]' />
+                                </div>
+                                <button className='focus:ring-0 w-full text-center hover:bg-white hover:text-primaryColor transition-all border-2 border-transparent hover:border-primaryColor bg-primaryColor p-3 mx-2 rounded text-white text-2xl'>Order {mealCode} now</button>
+                            </div>
                         </div>
-                        <button className='focus:ring-0 w-full text-center hover:bg-white hover:text-primaryColor transition-all border-2 border-transparent hover:border-primaryColor bg-primaryColor p-3 mx-2 rounded text-white text-2xl'>Order {mealCode} now</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        <FooterComponent />
     </>
   )
 }
