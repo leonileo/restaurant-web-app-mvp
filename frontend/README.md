@@ -21,6 +21,12 @@ Figma's high-fidelity prototypes ensured a top-notch user experience for our MVP
 
 ## Dependancies
 * [Tailwind css](https://tailwindcss.com/)
+* [flowbite-react](https://flowbite-react.com/)
+* [react-icons](https://react-icons.github.io/)
+* [react-redux](https://react-redux.js.org/)
+* [@reduxjs/toolkit](https://redux-toolkit.js.org/)
+* [react-router-dom](https://reactrouter.com/en/main)
+* [react-toastify](https://www.npmjs.com/package/react-toastify)
 
 ## Authors
 ###### MVP
