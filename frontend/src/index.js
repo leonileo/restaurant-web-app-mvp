@@ -13,6 +13,8 @@ import './index.css';
 import HomeScreen from './screens/HomeScreen'
 import MenuScreen from './screens/MenuScreen';
 import LoginScreen from './screens/LoginScreen';
+import AdminRoute from './components/AdminRoute';
+import AdminDashboard from './screens/Admin/AdminDashboard.jsx';
 
 
 // Router function
@@ -22,6 +24,9 @@ const router = createBrowserRouter(
       <Route index={true} path='/' element={<HomeScreen />} />
       <Route path='/menu' element={<MenuScreen />} />
       <Route path='/login' element={<LoginScreen />} />
+      <Route path='' element={<AdminRoute />}>
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+      </Route>
     </Route>
   )
 )
