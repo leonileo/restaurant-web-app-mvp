@@ -4,6 +4,17 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 const CreateFood = ({setTab}) => {
   const [ingredient, setIngredient] = useState("");
   const [allIngredients, setAllIngredients] = useState([]);
+  const category = 
+  [
+      "Breakfast",
+      "Sandwich",
+      "Pizza",
+      "Burger",
+      "Juice",
+      "Coffee",
+      "Cold drinks",
+      "Traditional foods"
+  ]
 
   const ingredientLists = [
     "Onion", "Oil", "Bread"
@@ -53,12 +64,27 @@ const CreateFood = ({setTab}) => {
                   > Add
                   </button>
                 </div>
-                <div className="ing border-2 rounded p-2 w-full h-[15vh]">
+                <div className="ing border-2 rounded p-2 w-full h-[15vh] cursor-not-allowed">
                   <p className='font-semibold'>
                     {allIngredients.map(ing => (
                     <p className='inline-block pr-1'>{ing},</p>
                   ))}</p>
                 </div>
+              </label>
+              <label className="input block space-y-2 w-fit">
+                <label htmlFor="category" className='text-xl font-semibold block'>category</label>
+                  {category.length === 0 ? (
+                    <div>
+                      <label htmlFor='category' className='block mb-2'>No Catagories Available! <span className='underline text-primaryColor'> Click to create one now. </span></label>
+                      <input type="text" id='category' className='border-gray-400 rounded' />
+                    </div>
+                  ) : 
+                  <select name="category" id="category">
+                    {category.map(e => (
+                    <option value={e}>{e}</option>
+                    ))}
+                  </select>
+                  }
               </label>
               <button type="submit" className='border-2 border-textColor bg-transparent p-2 px-5 md:text-3xl rounded-md hover:bg-textColor hover:text-white transition-all'>Create meal</button>
             </div>
