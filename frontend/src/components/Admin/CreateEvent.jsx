@@ -1,9 +1,16 @@
 import { Tooltip } from 'flowbite-react';
-import React from 'react'
+import React, { useState } from 'react'
 import { IoCloudUploadOutline } from "react-icons/io5";
 
+
 const CreateEvent = ({setTab}) => {
-  return (
+    const [startingMeridian, setStartingMeridian] = useState('');
+    const [startingTime, setStartingTime] = useState('');
+    const [endingMeridian, setEndingMeridian] = useState('');
+    const [endingTime, setEndingTime] = useState('');
+
+
+    return (
         <div>
             {/* top */}
             <div className="top">
@@ -21,11 +28,17 @@ const CreateEvent = ({setTab}) => {
                     <label htmlFor="event_time" className='text-xl font-semibold block'>Event Time</label>
                     <div className="flex items-center gap-5">
                         <Tooltip content="Enter the starting time of the event.">
-                            <input type="time" id='event_time_from' placeholder='From' className='text-center w-[100px] rounded-md border-gray-200' />
+                            <input type="time" max={12} maxLength={2} id='event_time_from' onChange={(e) => {
+                                let [h, m] = e.target.value.split(":");
+                                setStartingTime((h % 12 ? h % 12 : 12) + ":" + m, h >= 12 ? setStartingMeridian('PM') : setStartingMeridian('AM'))
+                            }} placeholder='From' className='text-center w-[100px] rounded-md border-gray-200' />
                         </Tooltip>
                         <p className='text-gray-400 font-bold'>-</p>
                         <Tooltip content="Enter the Ending time of the event.">
-                            <input type="time" id='event_time_to' placeholder='To' className='text-center w-[100px] rounded-md border-gray-200' />
+                            <input type="time" max={12} maxLength={2} id='event_time_to' onChange={(e) => {
+                                let [h, m] = e.target.value.split(":");
+                                setEndingTime((h % 12 ? h % 12 : 12) + ":" + m, h >= 12 ? setEndingMeridian('PM') : setEndingMeridian('AM'))
+                            }}  placeholder='To' className='text-center w-[100px] rounded-md border-gray-200' />
                         </Tooltip>
                     </div>
                 </label>
