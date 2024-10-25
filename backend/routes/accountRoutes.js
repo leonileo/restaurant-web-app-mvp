@@ -3,7 +3,7 @@
 // accountRoutes.js
 // Import necessary modules
 const express = require('express');
-const {admin} = require('../middleware/authMiddleware.js');
+const {protect, admin} = require('../middleware/authMiddleware.js');
 const {
     addUser,
     getUserAccount,
@@ -13,9 +13,9 @@ const {
 const router = express.Router();
 
 router.route('/')
-.post( addUser)
-.get(admin, getUserAccount)
-.put(admin, updateUserAccount)
+.post(addUser)
+.get(protect, admin, getUserAccount)
+.put(protect, admin, updateUserAccount)
 
 module.exports = router
 // PROJECT POWERD BY LABA CREATIVES

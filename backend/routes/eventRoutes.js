@@ -3,7 +3,7 @@
 // eventRoutes.js
 // Import necessary modules
 const express = require('express');
-const {admin} = require('../middleware/authMiddleware.js');
+const {protect, admin} = require('../middleware/authMiddleware.js');
 const {
     addEvents,
     getEvents,
@@ -14,11 +14,11 @@ const {
 const router = express.Router();
 
 router.route('/')
-.post(admin, addEvents)
+.post(protect, admin, addEvents)
 .get(getEvents);
 router.route('/:id')
-.put(admin, updateEvent)
-.delete(admin, deleteEvent)
+.put(protect, admin, updateEvent)
+.delete(protect, admin, deleteEvent)
 
 
 module.exports = router

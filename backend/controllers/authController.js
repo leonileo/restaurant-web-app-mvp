@@ -6,7 +6,7 @@ const User = require('../models/userModel.js');
 const generateToken = require('../utils/generateToken.js');
 
 // @desc    Auth user and get token
-// @route   POST /apiv1/login
+// @route   POST /apiv1/auth/login
 // @access  Public
 const loginUser = asyncHandler( async (req, res) => { 
     const { email, password } = req.body;

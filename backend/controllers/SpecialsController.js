@@ -18,7 +18,6 @@ const addSpecial = asyncHandler( async(req, res) => {
         const updatedFood = await food.save();
         res.json(updatedFood);
     } else {
-        res.status(404);
         throw new Error('Food not found');
     }
 

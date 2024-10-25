@@ -38,7 +38,7 @@ const getFoods =  asyncHandler( async(req, res) => {
 // @route   PUT /apiv1/food/:id
 // @access  Private
 const updateFood = asyncHandler( async(req, res) => {
-    const { name, ingredient, price, code, picture, isSpecial, category } = req.body;
+    const { name, ingredient, price, code, picture, category } = req.body;
 
     const food = await Food.findById(req.params.id)
 
@@ -48,7 +48,6 @@ const updateFood = asyncHandler( async(req, res) => {
         food.price = price 
         food.code = code 
         food.picture = picture 
-        food.isSpecial = isSpecial 
         food.category = category 
 
         const updatedFood = await food.save()

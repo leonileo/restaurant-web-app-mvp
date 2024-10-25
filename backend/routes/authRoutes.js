@@ -3,7 +3,6 @@
 // authRoutes.js
 // Import necessary modules
 const express = require('express');
-const { admin } = require('../middleware/authMiddleware.js');
 const {
     loginUser,
     logoutUser
@@ -11,9 +10,9 @@ const {
 const router = express.Router();
 
 router.route('/login')
-.post(admin, loginUser)
+.post(loginUser);
 router.route('/logout')
-.post(admin, logoutUser)
+.post(logoutUser)
 
 module.exports = router
 // PROJECT POWERD BY LABA CREATIVES

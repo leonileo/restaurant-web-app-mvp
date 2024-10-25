@@ -74,7 +74,7 @@ const updateUserAccount = ( async(req, res) => {
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
-            password: updatedUser.password,
+            isAdmin: updatedUser.isAdmin,
         })
     } else {
         res.status(404);

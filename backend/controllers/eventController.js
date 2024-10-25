@@ -8,13 +8,13 @@ const Event = require('../models/eventModel.js')
 // @route   POST /apiv1/event
 // @access  Private
 const addEvents = asyncHandler( async(req, res) => {
-    const {name, starting_time, ending_time, date, description, picture} = req.body;
+    const {name, startingTime, endingTime, date, description, picture} = req.body;
 
     const event = new Event({
-        // user: req.user._id,
+        user: req.user._id,
         name: name,
-        starting_time: starting_time,
-        ending_time: ending_time,
+        startingTime: startingTime,
+        endingTime: endingTime,
         date: date,
         description: description,
         picture: picture,
@@ -37,14 +37,14 @@ const getEvents =  asyncHandler( async(req, res) => {
 // @route   PUT /apiv1/event/:id
 // @access  Private
 const updateEvent = asyncHandler( async(req, res) => {
-    const {name, starting_time, ending_time, date, description, picture} = req.body;
+    const {name, startingTime, endingTime, date, description, picture} = req.body;
 
     const event = await Event.findById(req.params.id);
 
     if (event) {
         event.name = name;
-        event.starting_time = starting_time;
-        event.ending_time = ending_time;
+        event.startingTime = startingTime;
+        event.endingTime = endingTime;
         event.date = date;
         event.description = description;
         event.picture = picture;
