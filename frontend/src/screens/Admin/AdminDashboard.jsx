@@ -18,6 +18,8 @@ import EditAccount from '../../components/Admin/EditAccount';
 
 const AdminDashboard = () => {
     const [tab, setTab] = useState(1)
+    const [name, setName] = useState(1)
+    const [email, setEmail] = useState(1)
 
   return (
     <div className='min-h-[100vh] h-full'>
@@ -82,10 +84,10 @@ const AdminDashboard = () => {
                 {tab === 2 && <Foods tab={tab} setTab={setTab} />}
                 {tab === 3 && <Events tab={tab} setTab={setTab} />}
                 {tab === 4 && <Specials tab={tab} setTab={setTab} />}
-                {tab === 5 && <Account tab={tab} setTab={setTab} />}
+                {tab === 5 && <Account tab={tab} setTab={setTab} setName={setName} setEmail={setEmail} />}
                 {tab === 6 && <CreateFood tab={tab} setTab={setTab} />}
                 {tab === 7 && <CreateEvent tab={tab} setTab={setTab} />}
-                {tab === 8 && <EditAccount tab={tab} setTab={setTab} />}
+                {tab === 8 && <EditAccount tab={tab} setTab={setTab} name={name} setName={setName} email={email} setEmail={setEmail} />}
             </div>
         </div>
     </div>

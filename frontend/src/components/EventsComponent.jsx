@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { CiCalendar } from 'react-icons/ci'
 import { BsArrowRight } from "react-icons/bs";
 import eventbg from '../assets/images/eventbg.jpg'
-import event1 from '../assets/images/event1.jpg'
-import event2 from '../assets/images/event2.jpg'
-import event3 from '../assets/images/event3.webp'
 import { Link } from 'react-router-dom';
 import { TfiClose } from "react-icons/tfi";
+import { useEventsQuery } from '../slices/homepageApiSlice';
+// import event1 from '../assets/images/event1.jpg'
+// import event2 from '../assets/images/event2.jpg'
+// import event3 from '../assets/images/event3.webp'
 
 
 const EventsComponent = () => {
@@ -28,29 +29,33 @@ const EventsComponent = () => {
   }
 
   const phone_number = "0930306825"
-  const events = [
-    { 
-      event_name: "Kids with chef",
-      event_date: "Every Saturday",
-      event_time: "8:00 AM - 7:00 PM",
-      event_description: "Calling all aspiring young chefs! Join us for a fun and educational pizza cooking workshop. We'll provide all the ingredients and tools you need, and you'll even get to take home your finished pizzas. This workshop is perfect for kids ages 6-12. Space is limited, so sign up today!",
-      event_picture: event1
-    },
-    { 
-      event_name: "Couples Night",
-      event_date: "Every Thursday",
-      event_time: "8:00 PM - 10:00 PM",
-      event_description: "Escape the hustle and bustle of everyday life and spend an evening with your loved one at our Couples Night Out. Enjoy a delicious dinner, live music, and dancing.",
-      event_picture: event2
-    },
-    { 
-      event_name: "Single mom's",
-      event_date: "Every Wednesday",
-      event_time: "5:00 AM - 9:00 PM",
-      event_description: "Free Night Out for Single Moms and Their Kids A night to relax, recharge, and have fun with your kids. Enjoy a delicious dinner, games, and activities.",
-      event_picture: event3
-    },
-  ]
+  // const events = [
+  //   { 
+  //     event_name: "Kids with chef",
+  //     event_date: "Every Saturday",
+  //     event_time: "8:00 AM - 7:00 PM",
+  //     event_description: "Calling all aspiring young chefs! Join us for a fun and educational pizza cooking workshop. We'll provide all the ingredients and tools you need, and you'll even get to take home your finished pizzas. This workshop is perfect for kids ages 6-12. Space is limited, so sign up today!",
+  //     event_picture: event1
+  //   },
+  //   { 
+  //     event_name: "Couples Night",
+  //     event_date: "Every Thursday",
+  //     event_time: "8:00 PM - 10:00 PM",
+  //     event_description: "Escape the hustle and bustle of everyday life and spend an evening with your loved one at our Couples Night Out. Enjoy a delicious dinner, live music, and dancing.",
+  //     event_picture: event2
+  //   },
+  //   { 
+  //     event_name: "Single mom's",
+  //     event_date: "Every Wednesday",
+  //     event_time: "5:00 AM - 9:00 PM",
+  //     event_description: "Free Night Out for Single Moms and Their Kids A night to relax, recharge, and have fun with your kids. Enjoy a delicious dinner, games, and activities.",
+  //     event_picture: event3
+  //   },
+  // ]
+  
+  const { data: events, isLoading, error } = useEventsQuery();
+
+
   return (
     <div className='p-10' id='events'>
       <div className='md:px-20 sm:space-y-5'>
@@ -59,28 +64,28 @@ const EventsComponent = () => {
           <hr className='border-primaryColor border-[1px] rounded-full w-auto' />
         </div>
         <div className="events flex md:flex-nowrap flex-wrap gap-5 justify-center">
-          {events.map((event, x) => (
-            <div key={x} className=' border-[1px] rounded-lg overflow-hidden w-full'>
+          {isLoading ? "Loading" : error ? "Error" : events.length > 0 && events.map((event) => (
+            <div key={event._id} className=' border-[1px] rounded-lg overflow-hidden w-full'>
               <div className="top h-[15vh]" style={{
-                backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.5)), url(${event.event_picture})`,
+                backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.5)), url(${event.picture})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}>
               </div>
               <div className="bottom md:p-5 p-2 space-y-4">
-                <div className="name md:text-3xl text-xl font-bold capitalize text-textColor">{event.event_name}</div>
+                <div className="name md:text-3xl text-xl font-bold capitalize text-textColor">{event.name}</div>
                 <div className="date flex items-start gap-2">
                   <div className="icon flex items-center">
                     <CiCalendar size={"20px"} />
                     <p>Date:</p>
                   </div>
-                  <p className='text-gray-400'><span className='hidden lg:inline'>{event.event_time}</span> {event.event_date}</p>
+                  <p className='text-gray-400'><span className='hidden lg:inline'>{event.startingTime} - {event.endingTime}</span> {event.date}</p>
                 </div>
                 <div className="description pr-5 text-balance">
-                  <p className='line-clamp-2'>{event.event_description}</p>
+                  <p className='line-clamp-2'>{event.description}</p>
                   <button onClick={()=>{
-                      setDetails(event.event_name, event.event_description, event.event_time, event.event_date, event.event_picture)
+                      setDetails(event.name, event.description, `${event.startingTime} - ${event.endingTime}`, event.date, event.picture)
                       setOpn(!opn)
                     }} 
                     className='btn mt-5 font-bold text-gray-400'><span className='group flex gap-2 items-center hover:text-secondaryColor'>More info <BsArrowRight className='group-hover:translate-x-2 transition-all' /></span></button>

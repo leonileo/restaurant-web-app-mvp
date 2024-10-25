@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import menuImg from '../assets/images/menuImg.png'
-import mealImg1 from '../assets/images/mealImg1.jpg'
-import specialImg from '../assets/images/specialImg.jpg'
 import egg from '../assets/images/egg.png'
 import onion from '../assets/images/onion.png'
 import oil from '../assets/images/oil.png'
@@ -10,6 +8,9 @@ import bread from '../assets/images/bread.png'
 import { TfiClose } from 'react-icons/tfi'
 import HeaderComponent from '../components/HeaderComponent'
 import FooterComponent from '../components/FooterComponent'
+import { useCategoriesQuery, useFoodsQuery } from '../slices/homepageApiSlice'
+// import mealImg1 from '../assets/images/mealImg1.jpg'
+// import specialImg from '../assets/images/specialImg.jpg'
 
 
 
@@ -17,112 +18,6 @@ const MenuScreen = () => {
     // states
     const [currentCategory, setCurrentCategory] = useState("Breakfast")
     const [opn, setOpn] = useState(false);
-
-    // dummy data
-    const categories = [
-        "Breakfast",
-        "Sandwich",
-        "Pizza",
-        "Burger",
-        "Juice",
-        "Coffee",
-        "Cold drinks",
-        "Traditional foods"
-    ]
-
-    const meals = [
-        {
-            meal_name: "Scrambled eggs",
-            meal_picture: mealImg1,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Breakfast",
-            is_special: false,
-            meal_code: '001',
-            meal_price: 140
-        },
-        {
-            meal_name: "Scrambled eggs",
-            meal_picture: mealImg1,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Breakfast",
-            is_special: false,
-            meal_code: '002',
-            meal_price: 140
-        },
-        {
-            meal_name: "Scrambled eggs",
-            meal_picture: mealImg1,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Breakfast",
-            is_special: false,
-            meal_code: '003',
-            meal_price: 140
-        },
-        {
-            meal_name: "Scrambled eggs",
-            meal_picture: mealImg1,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Breakfast",
-            is_special: false,
-            meal_code: '004',
-            meal_price: 140
-        },
-        {
-            meal_name: "Burger",
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Burger",
-            is_special: false,
-            meal_code: '005',
-            meal_price: 140
-        },
-        {
-            meal_name: "Scrambled eggs",
-            meal_picture: mealImg1,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Breakfast",
-            is_special: false,
-            meal_code: '006',
-            meal_price: 140
-        },
-        {
-            meal_name: "Burger",
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Burger",
-            is_special: false,
-            meal_code: '007',
-            meal_price: 140
-        },
-        {
-            meal_name: "Kitfo pizza",
-            meal_picture: specialImg,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Traditional foods",
-            is_special: true,
-            meal_code: '008',
-            meal_price: 140
-        },
-        {
-            meal_name: "Pizza",
-            meal_picture: specialImg,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Traditional foods",
-            is_special: true,
-            meal_code: '009',
-            meal_price: 140
-        },
-        {
-            meal_name: "Pizza",
-            meal_picture: specialImg,
-            meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
-            meal_category: "Traditional foods",
-            is_special: true,
-            meal_code: '010',
-            meal_price: 140
-        },
-    ]
-    // dummy data
-
-
     const [mealName, setMealName] = useState("")
     const [mealPicture, setMealPicture] = useState("")
     const [mealIngredient, setMealIngredient] = useState("")
@@ -141,6 +36,117 @@ const MenuScreen = () => {
         setMealCode(code);
         setMealPrice(price);
     }
+
+    // dummy data
+    // const categories = [
+    //     "Breakfast",
+    //     "Sandwich",
+    //     "Pizza",
+    //     "Burger",
+    //     "Juice",
+    //     "Coffee",
+    //     "Cold drinks",
+    //     "Traditional foods"
+    // ]
+
+    // const meals = [
+    //     {
+    //         meal_name: "Scrambled eggs",
+    //         meal_picture: mealImg1,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Breakfast",
+    //         is_special: false,
+    //         meal_code: '001',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Scrambled eggs",
+    //         meal_picture: mealImg1,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Breakfast",
+    //         is_special: false,
+    //         meal_code: '002',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Scrambled eggs",
+    //         meal_picture: mealImg1,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Breakfast",
+    //         is_special: false,
+    //         meal_code: '003',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Scrambled eggs",
+    //         meal_picture: mealImg1,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Breakfast",
+    //         is_special: false,
+    //         meal_code: '004',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Burger",
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Burger",
+    //         is_special: false,
+    //         meal_code: '005',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Scrambled eggs",
+    //         meal_picture: mealImg1,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Breakfast",
+    //         is_special: false,
+    //         meal_code: '006',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Burger",
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Burger",
+    //         is_special: false,
+    //         meal_code: '007',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Kitfo pizza",
+    //         meal_picture: specialImg,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Traditional foods",
+    //         is_special: true,
+    //         meal_code: '008',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Pizza",
+    //         meal_picture: specialImg,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Traditional foods",
+    //         is_special: true,
+    //         meal_code: '009',
+    //         meal_price: 140
+    //     },
+    //     {
+    //         meal_name: "Pizza",
+    //         meal_picture: specialImg,
+    //         meal_ingredient: "Egg, onions, tomato, oil, Breckland thyme with bread or injera.",
+    //         meal_category: "Traditional foods",
+    //         is_special: true,
+    //         meal_code: '010',
+    //         meal_price: 140
+    //     },
+    // ]
+    // dummy data
+
+    const { data: meals, isLoading, error } = useFoodsQuery();
+    const { data: categories, isLoading: categoryLoad, error: categoryErr } = useCategoriesQuery();
+
+    useEffect(() => {
+        setCurrentCategory(categoryLoad ? '' : categoryErr ? '' : categories[0].categoryName)
+    })
 
   return (
     <>
@@ -165,18 +171,18 @@ const MenuScreen = () => {
                                 <h4 className='text-3xl '>Menu</h4>
                                 {/* map categories */}
                                 <div className='categories sm:overflow-hidden overflow-x-scroll flex gap-2 max-w-[4 00px] w-auto'>
-                                    {categories.map((category) => (
-                                        <p className={`${category === currentCategory && "border-b-gray-500"} border-b-2 border-transparent text-nowrap duration-100 transition-all`} onClick={()=> setCurrentCategory(category)}>{category}</p>
+                                    {categoryLoad ? "load" : categoryErr ? "ERR" : categories.length > 0  && categories.map((category) => (
+                                        <p className={`${category.categoryName === currentCategory && "border-b-gray-500"} border-b-2 border-transparent text-nowrap duration-100 transition-all`} onClick={()=> setCurrentCategory(category.categoryName)}>{category.categoryName}</p>
                                     ))}
                                 </div>
                             </div>
                             <div className="meals grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-5">
-                                {meals.map((meal) => (
-                                    meal.meal_category === currentCategory && (
+                                {isLoading ? "Loading" : error ? "EROR" : meals.map((meal) => (
+                                    meal.category === currentCategory && (
                                     <div className='relative shadow-md hover:shadow-lg transition-all rounded-lg overflow-hidden h-[30vh]'>
                                         <div className="picture h-[15vh]"
                                             style={{
-                                                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.5)), url(${meal.meal_picture})`,
+                                                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(51, 33, 0, 0.5)), url(${meal.picture})`,
                                                     backgroundRepeat: "no-repeat",
                                                     backgroundSize: "cover",
                                                     backgroundPosition: "center",
@@ -184,13 +190,13 @@ const MenuScreen = () => {
                                         >
                                         </div>
                                         <div className='px-5 p-2'>
-                                            <h3 className='font-semibold text-primaryColor sm:text-2xl pb-2'>{meal.meal_name}</h3>
+                                            <h3 className='font-semibold text-primaryColor sm:text-2xl pb-2'>{meal.name}</h3>
                                             <p className='font-semibold'>Ingredients</p>
-                                            <p className='w-[250px] line-clamp-1'>{meal.meal_ingredient}</p>
+                                            <p className='w-[250px] line-clamp-1'>{meal.ingredient}</p>
                                         </div>
                                         <div className="btn flex justify-end">
                                             <button onClick={() =>{ 
-                                                setMeal(meal.meal_name, meal.meal_picture, meal.meal_ingredient, meal.meal_category, meal.is_special, meal.meal_code, meal.meal_price)
+                                                setMeal(meal.name, meal.picture, meal.ingredient, meal.category, meal.isSpecial, meal.code, meal.price)
                                                 setOpn(!opn)
                                                 }} 
                                                 className='transition-all m-5 p-2 rounded-full px-5 font-semibold text-primaryColor border-[1px] border-primaryColor hover:text-white cursor-pointer bg-transparent hover:bg-primaryColor '>Open detail</button>
@@ -205,12 +211,12 @@ const MenuScreen = () => {
                     <div className="specials w-full lg:max-w-[500px] p-2">
                         <h2 className='text-textColor font-semibold text-3xl pb-5'>Today specials</h2>
                         <div className="sps flex flex-wrap sm:my-0 my-5 sm:p-0 p-2 sm:max-w-auto max-w-[1050px] ">
-                            {meals.map(special => (
-                                special.is_special === true && (
+                            {isLoading ? "Loading" : error ? "EROR" : meals.map(special => (
+                                special.isSpecial === true && (
                                     <div className='my-2 flex shadow-md hover:shadow-lg transition-all rounded-lg overflow-hidden w-full xl:w-[450px]'>
                                         <div className="left w-full max-w-[250px] flex justify-center items-center"
                                             style={{
-                                                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(255,165,0,0.72)), url(${special.meal_picture})`,
+                                                    backgroundImage: `linear-gradient(rgba(51, 33, 0, 0.5), rgba(255,165,0,0.72)), url(${special.picture})`,
                                                     backgroundRepeat: "no-repeat",
                                                     backgroundSize: "cover",
                                                     backgroundPosition: "center",
@@ -218,14 +224,14 @@ const MenuScreen = () => {
                                         ><p className='stroke text-5xl text-center'>Special</p></div>
                                         <div className='right min-h-[10vh] px-5 p-2'>
                                             <div>
-                                                <h3 className='font-semibold text-primaryColor sm:text-xl pb-2'>{special.meal_name}</h3>
+                                                <h3 className='font-semibold text-primaryColor sm:text-xl pb-2'>{special.name}</h3>
                                                 <p className='font-semibold'>Ingredients</p>
-                                                <p className='w-full line-clamp-1'>{special.meal_ingredient}</p>
+                                                <p className='w-full line-clamp-1'>{special.ingredient}</p>
                                             </div>
                                             <div className='flex justify-end'>
                                                 <button 
                                                 onClick={() =>{ 
-                                                    setMeal(special.meal_name, special.meal_picture, special.meal_ingredient, special.meal_category, special.is_special, special.meal_code, special.meal_price, special.is_special)
+                                                    setMeal(special.name, special.picture, special.ingredient, special.category, special.isSpecial, special.code, special.price)
                                                     setOpn(!opn)
                                                 }}
                                                 className='transition-all text-end p-2 rounded-full px-5 font-semibold text-primaryColor border-[1px] border-transparent hover:text-white cursor-pointer bg-transparent hover:bg-primaryColor'

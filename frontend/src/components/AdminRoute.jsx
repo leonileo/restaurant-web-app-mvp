@@ -7,10 +7,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 
 // AdminRoute FUNCTION
 const AdminRoute = () => {
-    // const { userInfo } = useSelector(state => state.auth);
-    const userInfo = {
-        isAdmin: true
-    }
+    const { userInfo } = useSelector(state => state.auth);
     return userInfo && userInfo.isAdmin ? <Outlet />
     : 
     <Navigate to='/login' replace />

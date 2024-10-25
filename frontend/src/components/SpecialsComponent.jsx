@@ -1,23 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-// dummpy data
-import smImg1 from '../assets/images/smImg1.jpg'
-import smImg2 from '../assets/images/smImg2.jpg'
-import smImg3 from '../assets/images/smImg3.jpg'
-
 import icon1 from '../assets/images/icon1.png'
 import icon2 from '../assets/images/icon2.png'
+import { useSpecialsQuery } from '../slices/homepageApiSlice'
+
+// dummpy data
+// import smImg1 from '../assets/images/smImg1.jpg'
+// import smImg2 from '../assets/images/smImg2.jpg'
+// import smImg3 from '../assets/images/smImg3.jpg'
 
 
 const SpecialsComponent = () => {
 
   // dummy data
-  const specialMeals = [
-    {name: "Special juice", picture: smImg1},
-    {name: "MIA-Fasting", picture: smImg2},
-    {name: "Omelete", picture: smImg3},
-  ]
+  // const specialMeals = [
+  //   {name: "Special juice", picture: smImg1},
+  //   {name: "MIA-Fasting", picture: smImg2},
+  //   {name: "Omelete", picture: smImg3},
+  // ]
+
+
+  const { data: specialMeals, isLoading, error } = useSpecialsQuery();
 
   return (
     <div className='py-10 relative font-Jomolhari overflow-hidden'>
@@ -38,7 +41,7 @@ const SpecialsComponent = () => {
       </div>
       {/* special meals */}
       <div className="my-5 meals flex flex-wrap gap-10 justify-center font-Jomolhari uppercase">
-        {specialMeals.map((meal, x) => (
+        {isLoading ? "Loading" : error ? "Error" : specialMeals.length > 0 && specialMeals.map((meal, x) => (
           <div key={x} className='sm:h-[30vh] h-[15vh] z-20 my-2 p-2'>
             <div
             style={
