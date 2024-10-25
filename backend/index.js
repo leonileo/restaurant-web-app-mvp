@@ -40,7 +40,13 @@ app.use('/apiv1/dashboard', dashboardRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
-  app.use('/uploads', express.static('/uploads'));
+  app.use('/uploads', express.static('/uploads', {
+    setHeaders: (res, path) => {
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+      res.setHeader("Pragma", "no-cache");
+      res.setHeader("Expires", "0");
+    }
+  }));
   app.use(express.static(path.join(__dirname, '/frontend/build')));
 
   app.get('*', (req, res) =>
