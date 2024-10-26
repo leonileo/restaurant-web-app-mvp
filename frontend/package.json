@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://restaurant-web-app-mvp.onrender.com/",
+  "proxy": "https://restaurant-web-app-mvp-backend.onrender.com",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",
